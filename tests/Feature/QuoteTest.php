@@ -36,4 +36,12 @@ class QuoteTest extends TestCase
         $response->assertStatus(200);
         $this->assertResponseContains($response, '£35');
     }
+
+    public function testChocolateFountainCost()
+    {
+        $response = $this->post('/getquote', ['chocolate_fountains' => 1]);
+
+        $response->assertStatus(200);
+        $this->assertResponseContains($response, '£75');
+    }
 }
