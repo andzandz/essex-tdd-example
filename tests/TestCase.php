@@ -21,4 +21,13 @@ abstract class TestCase extends BaseTestCase
 
         $this->assertFalse($contains, "'$needle' found in response content.");
     }
+
+    public function followRedirects($response)
+    {
+        while ($response->isRedirect()) {
+            $response = $this->get($response->headers->get('Location'));
+        }
+
+        return $response;
+    }
 }
