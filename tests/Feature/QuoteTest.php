@@ -28,4 +28,12 @@ class QuoteTest extends TestCase
         $response->assertStatus(200);
         $this->assertResponseDoesNotContain($response, 'Your Quote:');
     }
+
+    public function testGnomeTrainCost()
+    {
+        $response = $this->post('/getquote', ['num_gnomes' => 2]);
+
+        $response->assertStatus(200);
+        $this->assertResponseContains($response, '£35');
+    }
 }

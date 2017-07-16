@@ -13,7 +13,7 @@ class QuoteController extends Controller
         ]);
     }
 
-    public function calculate()
+    public function calculate(Request $request)
     {
         return view('quote', [
             'quote_amount' => 25

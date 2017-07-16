@@ -61,13 +61,13 @@
             <div class="col-sm-4">
                 <div class="row">
                     <div class="col-sm-5">
-                        <input type="text" class="form-control topmargin">
+                        <input type="text" name="astro_width" class="form-control topmargin">
                     </div>
                     <div class="col-sm-2 text-center">
                         <h3>x</h3>
                     </div>
                     <div class="col-sm-5">
-                        <input type="text" class="form-control topmargin">
+                        <input type="text" name="astro_depth" class="form-control topmargin">
                     </div>
                 </div>
             </div>
@@ -80,7 +80,7 @@
                 <h3>Gnomes to train: </h3>
             </div>
             <div class="col-sm-4">
-                <input type="text" class="form-control topmargin">
+                <input type="text" name="num_gnomes" class="form-control topmargin">
             </div>
             <div class="col-sm-4">
                 <h3>gnomes</h3>
@@ -91,7 +91,7 @@
                 <h3>Chocolate fountains to build: </h3>
             </div>
             <div class="col-sm-4">
-                <input type="text" class="form-control topmargin">
+                <input type="text" name="chocolate_fountains" class="form-control topmargin">
             </div>
             <div class="col-sm-4">
                 <h3>fountains</h3>
@@ -102,7 +102,7 @@
                 <h3>Chocolate amount: </h3>
             </div>
             <div class="col-sm-4">
-                <input type="text" class="form-control topmargin">
+                <input type="text" name="chocolate_amount_freddos" class="form-control topmargin">
             </div>
             <div class="col-sm-4">
                 <h3>freddos</h3>
@@ -113,7 +113,7 @@
                 <h3>Length of hedge fund to trim: </h3>
             </div>
             <div class="col-sm-4">
-                <input type="text" class="form-control topmargin">
+                <input type="text" name="hedge_fund_length" class="form-control topmargin">
             </div>
             <div class="col-sm-4">
                 <h3>investment officers</h3>
@@ -124,7 +124,7 @@
                 <h3>Exorcisms: </h3>
             </div>
             <div class="col-sm-4">
-                <input type="text" class="form-control topmargin">
+                <input type="text" name="exorcisms" class="form-control topmargin">
             </div>
             <div class="col-sm-4">
                 <h3>ghosts</h3>
