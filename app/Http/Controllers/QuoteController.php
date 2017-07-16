@@ -17,9 +17,12 @@ class QuoteController extends Controller
     {
         $this->validate($request, [
             'num_gnomes' => 'numeric|min:0|nullable',
+            'chocolate_fountains' => 'numeric|min:0|nullable',
         ], [
             'num_gnomes.numeric' => 'The number of gnomes must be a number',
-            'num_gnomes.min' => 'Anti-gnomes are not allowed'
+            'num_gnomes.min' => 'Anti-gnomes are not allowed',
+            'chocolate_fountains.min' => 'Anti-fountains are not allowed',
+            'chocolate_fountains.numeric' => 'The number of fountains must be a number',
         ]);
 
         $quote_amount = 25 + 5 * $request->get('num_gnomes') + 50 * $request->get('chocolate_fountains');

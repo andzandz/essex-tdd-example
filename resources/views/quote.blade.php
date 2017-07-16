@@ -102,6 +102,7 @@
             </div>
             <div class="col-sm-4">
                 <input type="text" name="chocolate_fountains" class="form-control topmargin" value="{{$request['chocolate_fountains'] ?? ''}}">
+                <span class="error-span">{{$errors->first('chocolate_fountains')}}</span>
             </div>
             <div class="col-sm-4">
                 <h3>fountains</h3>

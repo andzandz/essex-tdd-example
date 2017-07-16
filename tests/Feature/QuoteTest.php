@@ -68,4 +68,28 @@ class QuoteTest extends TestCase
         $response->assertStatus(200);
         $this->assertResponseContains($response, '£75');
     }
+    public function testNonNumericFountainInput()
+    {
+        $this->get('/getquote');
+        $response = $this->post('/getquote', ['chocolate_fountains' => 'x']);
+        $response = $this->followRedirects($response);
+
+        $this->assertResponseContains($response, 'The number of fountains must be a number');
+        $this->assertResponseDoesNotContain($response, 'Your Quote:');
+    }
+    public function testEmptyFountainInput()
+    {
+        $response = $this->post('/getquote', ['chocolate_fountains' => '']);
+
+        $this->assertResponseContains($response, '£25');
+    }
+    public function testNegativeFountainInput()
+    {
+        $this->get('/getquote');
+        $response = $this->post('/getquote', ['chocolate_fountains' => '-2']);
+        $response = $this->followRedirects($response);
+
+        $this->assertResponseContains($response, 'Anti-fountains are not allowed');
+        $this->assertResponseDoesNotContain($response, 'Your Quote:');
+    }
 }
