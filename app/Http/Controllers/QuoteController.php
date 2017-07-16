@@ -16,7 +16,7 @@ class QuoteController extends Controller
     public function calculate(Request $request)
     {
         $this->validate($request, [
-            'num_gnomes' => 'numeric',
+            'num_gnomes' => 'numeric|nullable',
         ], [
             'num_gnomes.numeric' => 'The number of gnomes must be a number'
         ]);
