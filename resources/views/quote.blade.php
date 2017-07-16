@@ -14,6 +14,10 @@
             margin: 0;
         }
 
+        input.form-control {
+            font-size:20px;
+        }
+
         .title {
             font-size: 63px;
             color: white;
@@ -80,7 +84,7 @@
                 <h3>Gnomes to train: </h3>
             </div>
             <div class="col-sm-4">
-                <input type="text" name="num_gnomes" class="form-control topmargin">
+                <input type="text" name="num_gnomes" class="form-control topmargin" value="{{$request['num_gnomes'] ?? ''}}">
             </div>
             <div class="col-sm-4">
                 <h3>gnomes</h3>

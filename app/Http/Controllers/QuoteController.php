@@ -15,8 +15,11 @@ class QuoteController extends Controller
 
     public function calculate(Request $request)
     {
+        $quote_amount = 25 + 5*$request->get('num_gnomes');
+
         return view('quote', [
-            'quote_amount' => 25
+            'request' => $request->all(),
+            'quote_amount' => $quote_amount
         ]);
     }
 }
