@@ -44,6 +44,7 @@ class QuoteTest extends TestCase
         $response = $this->followRedirects($response);
 
         $this->assertResponseContains($response, 'The number of gnomes must be a number');
+        $this->assertResponseDoesNotContain($response, 'Your Quote:');
     }
 
     public function testChocolateFountainCost()

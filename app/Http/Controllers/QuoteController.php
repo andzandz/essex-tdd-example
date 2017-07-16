@@ -15,6 +15,12 @@ class QuoteController extends Controller
 
     public function calculate(Request $request)
     {
+        $this->validate($request, [
+            'num_gnomes' => 'numeric',
+        ], [
+            'num_gnomes.numeric' => 'The number of gnomes must be a number'
+        ]);
+
         $quote_amount = 25 + 5 * $request->get('num_gnomes') + 50 * $request->get('chocolate_fountains');
 
         return view('quote', [

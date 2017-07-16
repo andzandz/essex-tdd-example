@@ -38,6 +38,11 @@
         .topmargin {
             margin-top: 15px;
         }
+
+        .error-span {
+            color: red;
+            font-weight: bold;
+        }
     </style>
 
     <meta charset="utf-8">
@@ -85,6 +90,7 @@
             </div>
             <div class="col-sm-4">
                 <input type="text" name="num_gnomes" class="form-control topmargin" value="{{$request['num_gnomes'] ?? ''}}">
+                <span class="error-span">{{$errors->first('num_gnomes')}}</span>
             </div>
             <div class="col-sm-4">
                 <h3>gnomes</h3>
