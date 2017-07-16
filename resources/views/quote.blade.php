@@ -95,7 +95,7 @@
                 <h3>Chocolate fountains to build: </h3>
             </div>
             <div class="col-sm-4">
-                <input type="text" name="chocolate_fountains" class="form-control topmargin">
+                <input type="text" name="chocolate_fountains" class="form-control topmargin" value="{{$request['chocolate_fountains'] ?? ''}}">
             </div>
             <div class="col-sm-4">
                 <h3>fountains</h3>
