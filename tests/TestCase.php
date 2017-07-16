@@ -14,4 +14,11 @@ abstract class TestCase extends BaseTestCase
 
         $this->assertTrue($contains, "'$needle' not found in response content.");
     }
+
+    public function assertResponseDoesNotContain($response, $needle)
+    {
+        $contains = !(strpos($response->content(), $needle) === false);
+
+        $this->assertFalse($contains, "'$needle' found in response content.");
+    }
 }

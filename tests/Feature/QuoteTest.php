@@ -20,4 +20,12 @@ class QuoteTest extends TestCase
         $response->assertStatus(200);
         $this->assertResponseContains($response, '£25');
     }
+
+    public function testQuotePageHasNoQuoteBeforeSubmitting()
+    {
+        $response = $this->get('/getquote');
+
+        $response->assertStatus(200);
+        $this->assertResponseDoesNotContain($response, 'Your Quote:');
+    }
 }
