@@ -25,7 +25,8 @@ class QuoteController extends Controller
             'chocolate_fountains.numeric' => 'The number of fountains must be a number',
         ]);
 
-        $quote_amount = 25 + 5 * $request->get('num_gnomes') + 50 * $request->get('chocolate_fountains');
+        $quote_amount = 25 + 5 * $request->get('num_gnomes') + 50 * $request->get('chocolate_fountains')
+        + $request->get('astro_width') * $request->get('astro_depth') * 4;
 
         return view('quote', [
             'request' => $request->all(),
