@@ -51,6 +51,15 @@ class QuoteTest extends TestCase
 
         $this->assertResponseContains($response, '£25');
     }
+    public function testNegativeGnomeInput()
+    {
+        $this->get('/getquote');
+        $response = $this->post('/getquote', ['num_gnomes' => '-2']);
+        $response = $this->followRedirects($response);
+
+        $this->assertResponseContains($response, 'Anti-gnomes are not allowed');
+        $this->assertResponseDoesNotContain($response, 'Your Quote:');
+    }
 
     public function testChocolateFountainCost()
     {
