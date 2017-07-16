@@ -36,7 +36,6 @@ class QuoteTest extends TestCase
         $response->assertStatus(200);
         $this->assertResponseContains($response, '£35');
     }
-
     public function testNonNumericGnomeInput()
     {
         $this->get('/getquote');
@@ -45,6 +44,12 @@ class QuoteTest extends TestCase
 
         $this->assertResponseContains($response, 'The number of gnomes must be a number');
         $this->assertResponseDoesNotContain($response, 'Your Quote:');
+    }
+    public function testEmptyGnomeInput()
+    {
+        $response = $this->post('/getquote', ['num_gnomes' => '']);
+
+        $this->assertResponseContains($response, '£25');
     }
 
     public function testChocolateFountainCost()
