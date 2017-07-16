@@ -58,7 +58,7 @@
             {{-- if hedge fund and gnomes, also require financial-shield fence --}}
         </div>
         <div class="col-sm-12 title m-b-md text-center">
-            <a href="/quote" class="btn btn-primary">
+            <a href="/getquote" class="btn btn-primary">
                 <h1>GET YOUR QUOTE</h1>
             </a>
         </div>

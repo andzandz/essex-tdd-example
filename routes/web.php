@@ -14,3 +14,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/getquote', 'QuoteController@page');
+Route::post('/getquote', 'QuoteController@calculate');
