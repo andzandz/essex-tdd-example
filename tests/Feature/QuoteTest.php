@@ -92,4 +92,13 @@ class QuoteTest extends TestCase
         $this->assertResponseContains($response, 'Anti-fountains are not allowed');
         $this->assertResponseDoesNotContain($response, 'Your Quote:');
     }
+
+    public function testAstroTurf()
+    {
+        // 4 per square smoot - 25 + 16
+        $response = $this->post('/getquote', ['astro_width' => 2, 'astro_depth' => 2]);
+
+        $response->assertStatus(200);
+        $this->assertResponseContains($response, '£41');
+    }
 }
