@@ -29,6 +29,8 @@ class QuoteTest extends TestCase
         $this->assertResponseDoesNotContain($response, 'Your Quote:');
     }
 
+    // Gnomes
+
     public function testGnomeTrainCost()
     {
         $response = $this->post('/getquote', ['num_gnomes' => 2]);
@@ -60,6 +62,8 @@ class QuoteTest extends TestCase
         $this->assertResponseContains($response, 'Anti-gnomes are not allowed');
         $this->assertResponseDoesNotContain($response, 'Your Quote:');
     }
+
+    // Chocolate fountains
 
     public function testChocolateFountainCost()
     {
@@ -93,9 +97,11 @@ class QuoteTest extends TestCase
         $this->assertResponseDoesNotContain($response, 'Your Quote:');
     }
 
+    // Astro turf
+
     public function testAstroTurf()
     {
-        // 4 per square smoot - 25 + 16
+        // 4 per square smoot: 25 + 16
         $response = $this->post('/getquote', ['astro_width' => 2, 'astro_depth' => 2]);
 
         $response->assertStatus(200);

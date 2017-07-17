@@ -71,13 +71,13 @@
             <div class="col-sm-4">
                 <div class="row">
                     <div class="col-sm-5">
-                        <input type="text" name="astro_width" class="form-control topmargin">
+                        <input type="text" name="astro_width" class="form-control topmargin" value="{{$request['astro_width'] ?? ''}}">
                     </div>
                     <div class="col-sm-2 text-center">
                         <h3>x</h3>
                     </div>
                     <div class="col-sm-5">
-                        <input type="text" name="astro_depth" class="form-control topmargin">
+                        <input type="text" name="astro_depth" class="form-control topmargin" value="{{$request['astro_depth'] ?? ''}}">
                     </div>
                 </div>
             </div>
@@ -114,7 +114,7 @@
                 <h3>Chocolate amount: </h3>
             </div>
             <div class="col-sm-4">
-                <input type="text" name="chocolate_amount_freddos" class="form-control topmargin">
+                <input type="text" name="chocolate_amount_freddos" class="form-control topmargin" value="{{$request['chocolate_amount_freddos'] ?? ''}}">
             </div>
             <div class="col-sm-4">
                 <h3>freddos</h3>
@@ -125,7 +125,7 @@
                 <h3>Length of hedge fund to trim: </h3>
             </div>
             <div class="col-sm-4">
-                <input type="text" name="hedge_fund_length" class="form-control topmargin">
+                <input type="text" name="hedge_fund_length" class="form-control topmargin" value="{{$request['hedge_fund_length'] ?? ''}}">
             </div>
             <div class="col-sm-4">
                 <h3>investment officers</h3>
@@ -136,7 +136,7 @@
                 <h3>Exorcisms: </h3>
             </div>
             <div class="col-sm-4">
-                <input type="text" name="exorcisms" class="form-control topmargin">
+                <input type="text" name="exorcisms" class="form-control topmargin" value="{{$request['exorcisms'] ?? ''}}">
             </div>
             <div class="col-sm-4">
                 <h3>ghosts</h3>

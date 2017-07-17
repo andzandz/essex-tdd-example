@@ -2,10 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\QuoteCalculator;
 use Illuminate\Http\Request;
 
 class QuoteController extends Controller
 {
+    /** @var QuoteCalculator */
+    private $quote_calculator;
+
+    public function __construct($options)
+    {
+        $this->quote_calculator = $options['quote_calculator'];
+    }
+
     public function page()
     {
         return view('quote', [
@@ -25,12 +34,12 @@ class QuoteController extends Controller
             'chocolate_fountains.numeric' => 'The number of fountains must be a number',
         ]);
 
-        $quote_amount = 25 + 5 * $request->get('num_gnomes') + 50 * $request->get('chocolate_fountains')
-        + $request->get('astro_width') * $request->get('astro_depth') * 4;
+//        $quote_amount = 25 + 5 * $request->get('num_gnomes') + 50 * $request->get('chocolate_fountains')
+//        + $request->get('astro_width') * $request->get('astro_depth') * 4;
 
         return view('quote', [
             'request' => $request->all(),
-            'quote_amount' => $quote_amount
+            'quote_amount' => $this->quote_calculator->calculate($request->all())
         ]);
     }
 }
