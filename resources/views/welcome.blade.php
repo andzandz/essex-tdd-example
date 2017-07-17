@@ -2,7 +2,8 @@
 <html lang="{{ config('app.locale') }}">
 <head>
     {{-- Bootstrap --}}
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    {{--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">--}}
+    <link rel="stylesheet" href="/nocdn/bootstrap.min.css">
 
     <style>
         html, body {
@@ -39,7 +40,7 @@
     <title>MEGAGardening™ LTD</title>
 
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+    {{--<link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">--}}
 </head>
 <body>
 <div class="container">
@@ -51,7 +52,7 @@
             <ul>
                 <li><h3>Need that astro turf mown?</h3></li>
                 <li><h3>Need your gnomes trained?</h3></li>
-                <li><h3>Need a chocolate fountain built or maintained?</h3></li>
+                <li><h3>Fancy a new built chocolate fountain?</h3></li>
                 <li><h3>Need that hedge fund trimmed?</h3></li>
                 <li><h3>Require a tree or flowerbed exorcism?</h3></li>
             </ul>
