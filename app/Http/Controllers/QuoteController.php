@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\InsufficientFreddosException;
 use App\QuoteCalculator;
 use Illuminate\Http\Request;
+use Illuminate\Support\MessageBag;
+use Illuminate\Support\ViewErrorBag;
 
 class QuoteController extends Controller
 {
@@ -49,9 +52,18 @@ class QuoteController extends Controller
             'exorcisms.min' => "We can't currently exorcise extra-dimensional ghosts",
         ]);
 
+        try {
+            $quote_amount = $this->quote_calculator->calculate($request->all());
+        } catch (InsufficientFreddosException $e) {
+            return view('quote', [
+                'request' => $request->all(),
+                'quote_amount' => null
+            ])->withErrors(['chocolate_amount_freddos' => 'You need some chocolate with that, buster']);
+        }
+
         return view('quote', [
             'request' => $request->all(),
-            'quote_amount' => $this->quote_calculator->calculate($request->all())
+            'quote_amount' => $quote_amount
         ]);
     }
 }
