@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Exceptions\InsufficientFreddosException;
 use App\Http\Controllers\QuoteController;
 use Mockery;
 use Tests\TestCase;
@@ -86,7 +87,21 @@ class QuoteTest extends TestCase
 
     public function testInsufficientFreddos()
     {
-        $this->markTestIncomplete();
+        // Arrange
+        $quote_calculator_spy = Mockery::spy()->shouldReceive('calculate')
+            ->andThrow(InsufficientFreddosException::class)->getMock();
+
+        $quote_controller = new QuoteController([
+            'quote_calculator' => $quote_calculator_spy
+        ]);
+
+        app()->instance(QuoteController::class, $quote_controller);
+
+        // Act
+        $response = $this->post('/getquote', ['chocolate_fountains' => 1]);
+
+        // Assert
+        $this->assertResponseContains($response, 'You need some chocolate with that, buster');
     }
 
     // Astro turf
