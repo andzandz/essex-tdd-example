@@ -1,9 +1,12 @@
 <!doctype html>
 <html lang="{{ config('app.locale') }}">
 <head>
+    <script src="nocdn/jquery-3.2.1.min.js"></script>
+
     {{-- Bootstrap --}}
     {{--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">--}}
     <link rel="stylesheet" href="/nocdn/bootstrap.min.css">
+    <script src="nocdn/bootstrap.min.js"></script>
 
     <style>
         html, body {
@@ -43,6 +46,10 @@
         .error-span {
             color: red;
             font-weight: bold;
+        }
+
+        .tooltip {
+            font-size:20px;
         }
     </style>
 
@@ -119,7 +126,7 @@
                 <input type="text" name="chocolate_amount_freddos" class="form-control topmargin" value="{{$request['chocolate_amount_freddos'] ?? ''}}">
             </div>
             <div class="col-sm-4">
-                <h3>freddos</h3>
+                <h3>Freddos</h3>
             </div>
         </div>
         <div class="row">
@@ -135,10 +142,11 @@
         </div>
         <div class="row m-b-md">
             <div class="col-sm-4 text-right">
-                <h3>Exorcisms: </h3>
+                <h3>Horticultural exorcisms: </h3>
             </div>
             <div class="col-sm-4">
-                <input type="text" name="exorcisms" class="form-control topmargin" value="{{$request['exorcisms'] ?? ''}}">
+                <input type="text" name="exorcisms" class="form-control topmargin" value="{{$request['exorcisms'] ?? ''}}"
+                       data-toggle="tooltip" title="Who ya gonna call?">
             </div>
             <div class="col-sm-4">
                 <h3>ghosts</h3>
@@ -169,5 +177,12 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
+
 </body>
 </html>

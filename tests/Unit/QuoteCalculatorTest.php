@@ -41,4 +41,25 @@ class QuoteCalculatorTest extends TestCase
 
         $this->assertSame(41, $quote);
     }
+
+    public function testFreddos()
+    {
+        $quote = $this->quote_calculator->calculate(['chocolate_amount_freddos' => 2]);
+
+        $this->assertSame(27, $quote);
+    }
+
+    public function testHedgeFund()
+    {
+        $quote = $this->quote_calculator->calculate(['hedge_fund_length' => 1]);
+
+        $this->assertSame(100, $quote);
+    }
+
+    public function testExorcisms()
+    {
+        $quote = $this->quote_calculator->calculate(['exorcisms' => 1]);
+
+        $this->assertSame(1025, $quote);
+    }
 }
