@@ -72,12 +72,14 @@
                 <div class="row">
                     <div class="col-sm-5">
                         <input type="text" name="astro_width" class="form-control topmargin" value="{{$request['astro_width'] ?? ''}}">
+                        <span class="error-span">{{$errors->first('astro_width')}}</span>
                     </div>
                     <div class="col-sm-2 text-center">
                         <h3>x</h3>
                     </div>
                     <div class="col-sm-5">
                         <input type="text" name="astro_depth" class="form-control topmargin" value="{{$request['astro_depth'] ?? ''}}">
+                        <span class="error-span">{{$errors->first('astro_depth')}}</span>
                     </div>
                 </div>
             </div>

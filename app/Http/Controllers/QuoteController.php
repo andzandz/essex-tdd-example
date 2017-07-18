@@ -27,15 +27,18 @@ class QuoteController extends Controller
         $this->validate($request, [
             'num_gnomes' => 'numeric|min:0|nullable',
             'chocolate_fountains' => 'numeric|min:0|nullable',
+            'astro_width' => 'numeric|min:0|nullable',
+            'astro_depth' => 'numeric|min:0|nullable',
         ], [
             'num_gnomes.numeric' => 'The number of gnomes must be a number',
             'num_gnomes.min' => 'Anti-gnomes are not allowed',
             'chocolate_fountains.min' => 'Anti-fountains are not allowed',
             'chocolate_fountains.numeric' => 'The number of fountains must be a number',
+            'astro_width.min' => 'Anti-turf is not allowed',
+            'astro_width.numeric' => 'The turf size must be a number',
+            'astro_depth.min' => 'Anti-turf is not allowed',
+            'astro_depth.numeric' => 'The turf size must be a number',
         ]);
-
-//        $quote_amount = 25 + 5 * $request->get('num_gnomes') + 50 * $request->get('chocolate_fountains')
-//        + $request->get('astro_width') * $request->get('astro_depth') * 4;
 
         return view('quote', [
             'request' => $request->all(),

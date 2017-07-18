@@ -109,6 +109,42 @@ class QuoteTest extends TestCase
         $response->assertStatus(200);
         $this->assertResponseContains($response, '£41');
     }
+    public function testNonNumericTurfWidthInput()
+    {
+        $this->get('/getquote');
+        $response = $this->post('/getquote', ['astro_width' => 'x']);
+        $response = $this->followRedirects($response);
+
+        $this->assertResponseContains($response, 'The turf size must be a number');
+        $this->assertResponseDoesNotContain($response, 'Your Quote:');
+    }
+    public function testNonNumericTurfDepthInput()
+    {
+        $this->get('/getquote');
+        $response = $this->post('/getquote', ['astro_depth' => 'x']);
+        $response = $this->followRedirects($response);
+
+        $this->assertResponseContains($response, 'The turf size must be a number');
+        $this->assertResponseDoesNotContain($response, 'Your Quote:');
+    }
+    public function testNegativeTurfWidthInput()
+    {
+        $this->get('/getquote');
+        $response = $this->post('/getquote', ['astro_width' => '-2']);
+        $response = $this->followRedirects($response);
+
+        $this->assertResponseContains($response, 'Anti-turf is not allowed');
+        $this->assertResponseDoesNotContain($response, 'Your Quote:');
+    }
+    public function testNegativeTurfDepthInput()
+    {
+        $this->get('/getquote');
+        $response = $this->post('/getquote', ['astro_depth' => '-2']);
+        $response = $this->followRedirects($response);
+
+        $this->assertResponseContains($response, 'Anti-turf is not allowed');
+        $this->assertResponseDoesNotContain($response, 'Your Quote:');
+    }
 
     // Integration tests
 
@@ -130,7 +166,7 @@ class QuoteTest extends TestCase
         $quote_calculator_spy->shouldHaveReceived('calculate')->with([
             'chocolate_fountains' => '1'
         ]);
-        
+
         $this->assertResponseContains($response, '£1000000');
     }
 }
