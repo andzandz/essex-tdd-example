@@ -42,12 +42,8 @@ class QuoteTest extends TestCase
     }
     public function testNonNumericGnomeInput()
     {
-        $this->get('/getquote');
-        $response = $this->post('/getquote', ['num_gnomes' => 'x']);
-        $response = $this->followRedirects($response);
-
-        $this->assertResponseContains($response, 'The number of gnomes must be a number');
-        $this->assertResponseDoesNotContain($response, 'Your Quote:');
+        $this->assertGivenFormParamsNoQuoteGivenAndResponseContains(
+            ['num_gnomes' => 'x'], 'The number of gnomes must be a number');
     }
     public function testEmptyGnomeInput()
     {
@@ -57,12 +53,8 @@ class QuoteTest extends TestCase
     }
     public function testNegativeGnomeInput()
     {
-        $this->get('/getquote');
-        $response = $this->post('/getquote', ['num_gnomes' => '-2']);
-        $response = $this->followRedirects($response);
-
-        $this->assertResponseContains($response, 'Anti-gnomes are not allowed');
-        $this->assertResponseDoesNotContain($response, 'Your Quote:');
+        $this->assertGivenFormParamsNoQuoteGivenAndResponseContains(
+            ['num_gnomes' => '-2'], 'Anti-gnomes are not allowed');
     }
 
     // Chocolate fountains
@@ -76,12 +68,8 @@ class QuoteTest extends TestCase
     }
     public function testNonNumericFountainInput()
     {
-        $this->get('/getquote');
-        $response = $this->post('/getquote', ['chocolate_fountains' => 'x']);
-        $response = $this->followRedirects($response);
-
-        $this->assertResponseContains($response, 'The number of fountains must be a number');
-        $this->assertResponseDoesNotContain($response, 'Your Quote:');
+        $this->assertGivenFormParamsNoQuoteGivenAndResponseContains(
+            ['chocolate_fountains' => 'x'], 'The number of fountains must be a number');
     }
     public function testEmptyFountainInput()
     {
@@ -91,12 +79,8 @@ class QuoteTest extends TestCase
     }
     public function testNegativeFountainInput()
     {
-        $this->get('/getquote');
-        $response = $this->post('/getquote', ['chocolate_fountains' => '-2']);
-        $response = $this->followRedirects($response);
-
-        $this->assertResponseContains($response, 'Anti-fountains are not allowed');
-        $this->assertResponseDoesNotContain($response, 'Your Quote:');
+        $this->assertGivenFormParamsNoQuoteGivenAndResponseContains(
+            ['chocolate_fountains' => '-2'], 'Anti-fountains are not allowed');
     }
 
     // Astro turf
@@ -111,39 +95,23 @@ class QuoteTest extends TestCase
     }
     public function testNonNumericTurfWidthInput()
     {
-        $this->get('/getquote');
-        $response = $this->post('/getquote', ['astro_width' => 'x']);
-        $response = $this->followRedirects($response);
-
-        $this->assertResponseContains($response, 'The turf size must be a number');
-        $this->assertResponseDoesNotContain($response, 'Your Quote:');
+        $this->assertGivenFormParamsNoQuoteGivenAndResponseContains(
+            ['astro_width' => 'x'], 'The turf size must be a number');
     }
     public function testNonNumericTurfDepthInput()
     {
-        $this->get('/getquote');
-        $response = $this->post('/getquote', ['astro_depth' => 'x']);
-        $response = $this->followRedirects($response);
-
-        $this->assertResponseContains($response, 'The turf size must be a number');
-        $this->assertResponseDoesNotContain($response, 'Your Quote:');
+        $this->assertGivenFormParamsNoQuoteGivenAndResponseContains(
+            ['astro_depth' => 'x'], 'The turf size must be a number');
     }
     public function testNegativeTurfWidthInput()
     {
-        $this->get('/getquote');
-        $response = $this->post('/getquote', ['astro_width' => '-2']);
-        $response = $this->followRedirects($response);
-
-        $this->assertResponseContains($response, 'Anti-turf is not allowed');
-        $this->assertResponseDoesNotContain($response, 'Your Quote:');
+        $this->assertGivenFormParamsNoQuoteGivenAndResponseContains(
+            ['astro_width' => '-2'], 'Anti-turf is not allowed');
     }
     public function testNegativeTurfDepthInput()
     {
-        $this->get('/getquote');
-        $response = $this->post('/getquote', ['astro_depth' => '-2']);
-        $response = $this->followRedirects($response);
-
-        $this->assertResponseContains($response, 'Anti-turf is not allowed');
-        $this->assertResponseDoesNotContain($response, 'Your Quote:');
+        $this->assertGivenFormParamsNoQuoteGivenAndResponseContains(
+            ['astro_depth' => '-20'], 'Anti-turf is not allowed');
     }
 
     // Integration tests
@@ -168,5 +136,17 @@ class QuoteTest extends TestCase
         ]);
 
         $this->assertResponseContains($response, '£1000000');
+    }
+
+    // Helper functions
+
+    private function assertGivenFormParamsNoQuoteGivenAndResponseContains($form_params, $response_needle)
+    {
+        $this->get('/getquote');
+        $response = $this->post('/getquote', $form_params);
+        $response = $this->followRedirects($response);
+
+        $this->assertResponseContains($response, $response_needle);
+        $this->assertResponseDoesNotContain($response, 'Your Quote:');
     }
 }
