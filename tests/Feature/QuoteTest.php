@@ -2,6 +2,8 @@
 
 namespace Tests\Feature;
 
+use App\Http\Controllers\QuoteController;
+use Mockery;
 use Tests\TestCase;
 
 class QuoteTest extends TestCase
@@ -106,5 +108,29 @@ class QuoteTest extends TestCase
 
         $response->assertStatus(200);
         $this->assertResponseContains($response, '£41');
+    }
+
+    // Integration tests
+
+    public function testQuoteControllerUsesReturnValueOfQuoteCalculator()
+    {
+        // Arrange
+        $quote_calculator_spy = Mockery::spy()->shouldReceive('calculate')->andReturn(1000000)->getMock();
+
+        $quote_controller = new QuoteController([
+            'quote_calculator' => $quote_calculator_spy
+        ]);
+
+        app()->instance(QuoteController::class, $quote_controller);
+
+        // Act
+        $response = $this->post('/getquote', ['chocolate_fountains' => 1]);
+
+        // Assert
+        $quote_calculator_spy->shouldHaveReceived('calculate')->with([
+            'chocolate_fountains' => '1'
+        ]);
+        
+        $this->assertResponseContains($response, '£1000000');
     }
 }
