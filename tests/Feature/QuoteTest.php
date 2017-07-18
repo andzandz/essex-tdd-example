@@ -114,6 +114,63 @@ class QuoteTest extends TestCase
             ['astro_depth' => '-20'], 'Anti-turf is not allowed');
     }
 
+    // Chocolate amount validation
+
+    public function testNonNumericChocolateInput()
+    {
+        $this->assertGivenFormParamsNoQuoteGivenAndResponseContains(
+            ['chocolate_amount_freddos' => 'x'], 'By law we only accept human numerals');
+    }
+    public function testEmptyChocolateInput()
+    {
+        $response = $this->post('/getquote', ['chocolate_amount_freddos' => '']);
+
+        $this->assertResponseContains($response, '£25');
+    }
+    public function testNegativeChocolateInput()
+    {
+        $this->assertGivenFormParamsNoQuoteGivenAndResponseContains(
+            ['chocolate_amount_freddos' => '-2'], 'Anti-chocolate is hazardous to your health');
+    }
+
+    // Hedge fund validation
+
+    public function testNonNumericHedgeFundInput()
+    {
+        $this->assertGivenFormParamsNoQuoteGivenAndResponseContains(
+            ['hedge_fund_length' => 'x'], 'This confuses me');
+    }
+    public function testEmptyHedgeFundInput()
+    {
+        $response = $this->post('/getquote', ['hedge_fund_length' => '']);
+
+        $this->assertResponseContains($response, '£25');
+    }
+    public function testNegativeHedgeFundInput()
+    {
+        $this->assertGivenFormParamsNoQuoteGivenAndResponseContains(
+            ['hedge_fund_length' => '-2'], "We can&#039;t help you if your hedge fund is in debt");
+    }
+
+    // Exorcisms validation
+
+    public function testNonNumericExorcismsInput()
+    {
+        $this->assertGivenFormParamsNoQuoteGivenAndResponseContains(
+            ['exorcisms' => 'x'], "But how many though?");
+    }
+    public function testEmptyExorcismsInput()
+    {
+        $response = $this->post('/getquote', ['exorcisms' => '']);
+
+        $this->assertResponseContains($response, '£25');
+    }
+    public function testNegativeExorcismsInput()
+    {
+        $this->assertGivenFormParamsNoQuoteGivenAndResponseContains(
+            ['exorcisms' => '-2'], "We can&#039;t currently exorcise extra-dimensional ghosts");
+    }
+
     // Integration tests
 
     public function testQuoteControllerUsesReturnValueOfQuoteCalculator()

@@ -124,6 +124,7 @@
             </div>
             <div class="col-sm-4">
                 <input type="text" name="chocolate_amount_freddos" class="form-control topmargin" value="{{$request['chocolate_amount_freddos'] ?? ''}}">
+                <span class="error-span">{{$errors->first('chocolate_amount_freddos')}}</span>
             </div>
             <div class="col-sm-4">
                 <h3>Freddos</h3>
@@ -135,6 +136,7 @@
             </div>
             <div class="col-sm-4">
                 <input type="text" name="hedge_fund_length" class="form-control topmargin" value="{{$request['hedge_fund_length'] ?? ''}}">
+                <span class="error-span">{{$errors->first('hedge_fund_length')}}</span>
             </div>
             <div class="col-sm-4">
                 <h3>investment officers</h3>
@@ -147,6 +149,7 @@
             <div class="col-sm-4">
                 <input type="text" name="exorcisms" class="form-control topmargin" value="{{$request['exorcisms'] ?? ''}}"
                        data-toggle="tooltip" title="Who ya gonna call?">
+                <span class="error-span">{{$errors->first('exorcisms')}}</span>
             </div>
             <div class="col-sm-4">
                 <h3>ghosts</h3>
