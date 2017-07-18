@@ -138,6 +138,36 @@ class QuoteTest extends TestCase
         $this->assertResponseContains($response, '£1000000');
     }
 
+    public function testQuoteControllerPassesAllFormValuesToQuoteCalculatorAndUsesReturnValue()
+    {
+        // Arrange
+        $quote_calculator_spy = Mockery::spy()->shouldReceive('calculate')->andReturn(123456)->getMock();
+
+        $quote_controller = new QuoteController([
+            'quote_calculator' => $quote_calculator_spy
+        ]);
+
+        app()->instance(QuoteController::class, $quote_controller);
+
+        $form_parameters = [
+            'num_gnomes' => 1,
+            'chocolate_fountains' => 2,
+            'astro_width' => 3,
+            'astro_depth' => 4,
+            'chocolate_amount_freddos' => 5,
+            'hedge_fund_length' => 6,
+            'exorcisms' => 7,
+        ];
+
+        // Act
+        $response = $this->post('/getquote', $form_parameters);
+
+        // Assert
+        $quote_calculator_spy->shouldHaveReceived('calculate')->with($form_parameters);
+
+        $this->assertResponseContains($response, '£123456');
+    }
+
     // Helper functions
 
     private function assertGivenFormParamsNoQuoteGivenAndResponseContains($form_params, $response_needle)

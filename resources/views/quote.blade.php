@@ -153,6 +153,14 @@
             </div>
         </div>
 
+        @if($quote_amount)
+            <div class="row m-b-md">
+                <div class="col-sm-12 text-center">
+                    <h2>Your Quote: £{{$quote_amount}}</h2>
+                </div>
+            </div>
+        @endif
+
         <div class="row">
             <div class="col-sm-12 title m-b-md text-center">
                 <button type="submit" class="btn btn-primary">
@@ -161,13 +169,6 @@
             </div>
         </div>
     </form>
-    @if($quote_amount)
-    <div class="row">
-        <div class="col-sm-12 text-center">
-            <h3>Your Quote: £{{$quote_amount}}</h3>
-        </div>
-    </div>
-    @endif
 
     <div class="row">
         <div class="col-sm-12">
