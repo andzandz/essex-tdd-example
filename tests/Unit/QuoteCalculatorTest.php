@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Exceptions\InsufficientFreddosException;
 use App\QuoteCalculator;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -32,6 +33,19 @@ class QuoteCalculatorTest extends TestCase
     {
         $quote = $this->quote_calculator->calculate(['chocolate_fountains' => 1]);
         $this->assertSame(75, $quote);
+    }
+
+    public function testExceptionThrownWhenFountainWithoutFreddos()
+    {
+        $exception_thrown = false;
+
+        try {
+            $quote = $this->quote_calculator->calculate(['chocolate_fountains' => 1]);
+        } catch (InsufficientFreddosException $e) {
+            $exception_thrown = true;
+        }
+
+        $this->assertTrue($exception_thrown, 'InsufficientFreddosException should be thrown when chocolate fountain without any Freddos specified in quote parameters');
     }
 
     public function testAstroTurf()
