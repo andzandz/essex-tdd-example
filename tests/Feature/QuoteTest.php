@@ -61,10 +61,11 @@ class QuoteTest extends TestCase
 
     public function testChocolateFountainCost()
     {
-        $response = $this->post('/getquote', ['chocolate_fountains' => 1]);
+        $response = $this->post('/getquote',
+            ['chocolate_fountains' => 1, 'chocolate_amount_freddos' => 1]);
 
         $response->assertStatus(200);
-        $this->assertResponseContains($response, '£75');
+        $this->assertResponseContains($response, '£76');
     }
     public function testNonNumericFountainInput()
     {
@@ -81,6 +82,11 @@ class QuoteTest extends TestCase
     {
         $this->assertGivenFormParamsNoQuoteGivenAndResponseContains(
             ['chocolate_fountains' => '-2'], 'Anti-fountains are not allowed');
+    }
+
+    public function testInsufficientFreddos()
+    {
+        $this->markTestIncomplete();
     }
 
     // Astro turf
