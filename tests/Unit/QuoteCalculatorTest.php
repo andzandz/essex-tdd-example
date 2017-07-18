@@ -31,8 +31,8 @@ class QuoteCalculatorTest extends TestCase
 
     public function testFountainCost()
     {
-        $quote = $this->quote_calculator->calculate(['chocolate_fountains' => 1]);
-        $this->assertSame(75, $quote);
+        $quote = $this->quote_calculator->calculate(['chocolate_fountains' => 1, 'chocolate_amount_freddos' => 1]);
+        $this->assertSame(76, $quote);
     }
 
     public function testExceptionThrownWhenFountainWithoutFreddos()
