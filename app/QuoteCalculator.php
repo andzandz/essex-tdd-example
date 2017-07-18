@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Exceptions\InsufficientFreddosException;
+
 class QuoteCalculator
 {
     private $base_cost = 25;
@@ -19,6 +21,11 @@ class QuoteCalculator
 
     public function calculate($options)
     {
+        if($this->getOption($options, 'chocolate_fountains') > 0
+            && $this->getOption($options, 'chocolate_amount_freddos') == 0) {
+            throw new InsufficientFreddosException();
+        }
+
         return $this->base_cost
         + $this->getOption($options, 'num_gnomes') * $this->gnome_cost
         + $this->getOption($options, 'chocolate_fountains') * $this->chocolate_fountain_cost
