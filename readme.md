@@ -1,4 +1,4 @@
-This is an example Laravel project to demonstrate TDD a presentation at the PHP Essex meetup group
+This is an example Laravel project to demonstrate the TDD process for my presentation at the PHP Essex meetup group
 
 Once installed, you can step through the development steps
 
