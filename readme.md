@@ -1,6 +1,8 @@
 This is an example Laravel project to demonstrate the TDD process for my presentation at the PHP Essex meetup group
 
-Once installed, you can step through the development steps
+Presentation slides: http://www.clearcrystal.co.uk/TDD.odp (you will need LibreOffice)
+
+Once you have installed this GitHub project, you can step through the development steps
 
 ```bash
 $ git checkout step1
