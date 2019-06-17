@@ -1,4 +1,4 @@
-This is an example Laravel project to demonstrate the TDD process for my presentation at the PHP Essex meetup group
+This is an example Laravel project to demonstrate the TDD process for my presentation at the PHP Essex (now Essex Web Developers) meetup group
 
 Presentation slides: http://www.clearcrystal.co.uk/TDD.odp (you will need LibreOffice)
 
